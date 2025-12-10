@@ -205,42 +205,76 @@ export async function buscarResumoGastosDeputado(id: number): Promise<GastoResum
 // Busca deputados com filtros (para listagem)
 export async function buscarDeputadosComFiltros(filtros: { nome?: string, partido?: string, uf?: string, pagina?: number }) {
   try {
-    console.log('🔍 Buscando deputados com filtros:', filtros);
-    
+    console.log('Buscando deputados com filtros:', filtros);
+
+    // 🔎 1. FILTRO POR PARTIDO (usa endpoint específico da Câmara)
+    if (filtros.partido) {
+      // Buscar ID do partido pela sigla
+      const partidos = await fazerRequisicao(`/partidos?sigla=${filtros.partido}`);
+      const idPartido = partidos.dados?.[0]?.id;
+
+      if (!idPartido) {
+        console.warn("Partido não encontrado:", filtros.partido);
+        return {
+          data: [],
+          meta: { total: 0, pagina: 1, itensPorPagina: 12, totalPaginas: 0 }
+        };
+      }
+
+      // Buscar membros pelo ID
+      const membros = await fazerRequisicao(`/partidos/${idPartido}/membros`);
+
+      const deputados = (membros.dados || []).map((dep: any) => ({
+        id: dep.id,
+        nomeParlamentar: dep.nome,
+        siglaPartido: filtros.partido!,
+        uf: dep.siglaUf,
+        urlFoto: dep.urlFoto,
+        situacao: "Em Exercício"
+      }));
+
+      return {
+        data: deputados,
+        meta: {
+          total: deputados.length,
+          pagina: 1,
+          itensPorPagina: deputados.length,
+          totalPaginas: 1
+        }
+      };
+    }
+
+    // 🔎 2. FILTRO NORMAL (nome + UF)
     let endpoint = '/deputados?ordem=ASC&ordenarPor=nome';
-    
+
     if (filtros.nome) endpoint += `&nome=${encodeURIComponent(filtros.nome)}`;
-    if (filtros.partido) endpoint += `&siglaPartido=${encodeURIComponent(filtros.partido)}`;
     if (filtros.uf) endpoint += `&siglaUf=${encodeURIComponent(filtros.uf)}`;
-    
+
     const itensPorPagina = 12;
     const pagina = filtros.pagina || 1;
-    
+
     endpoint += `&pagina=${pagina}&itens=${itensPorPagina}`;
-    
+
     const data = await fazerRequisicao(endpoint);
-    
+
     if (!data || !data.dados) {
       console.error('Resposta da API sem dados:', data);
       return { data: [], meta: { total: 0, pagina, itensPorPagina, totalPaginas: 0 } };
     }
-    
+
     const deputadosApi = data.dados || [];
     const links = data.links || [];
-    
-    // Extrai informações de paginação dos links
+
+    // Paginação
     let totalPaginas = 1;
     const lastLink = links.find((link: any) => link.rel === 'last');
-    if (lastLink && lastLink.href) {
+    if (lastLink?.href) {
       const match = lastLink.href.match(/pagina=(\d+)/);
-      if (match) {
-        totalPaginas = parseInt(match[1], 10);
-      }
+      if (match) totalPaginas = parseInt(match[1], 10);
     }
-    
-    // Estima o total baseado nas páginas
+
     const total = totalPaginas * itensPorPagina;
-    
+
     const deputadosTransformados = deputadosApi.map((dep: any) => ({
       id: dep.id,
       nomeParlamentar: dep.nome,
@@ -249,29 +283,26 @@ export async function buscarDeputadosComFiltros(filtros: { nome?: string, partid
       urlFoto: dep.urlFoto || 'https://placehold.co/200x250/e2e8f0/808080?text=Sem+Foto',
       situacao: 'Em Exercício'
     })) as ParlamentarBackend[];
-    
+
     return {
       data: deputadosTransformados,
-      meta: {
-        total,
-        pagina,
-        itensPorPagina,
-        totalPaginas
-      }
+      meta: { total, pagina, itensPorPagina, totalPaginas }
     };
+
   } catch (error: any) {
     console.error('❌ Erro ao buscar deputados com filtros:', error.message);
-    return { 
-      data: [], 
-      meta: { 
-        total: 0, 
-        pagina: filtros.pagina || 1, 
-        itensPorPagina: 12, 
-        totalPaginas: 0 
-      } 
+    return {
+      data: [],
+      meta: {
+        total: 0,
+        pagina: filtros.pagina || 1,
+        itensPorPagina: 12,
+        totalPaginas: 0
+      }
     };
   }
 }
+
 
 // Funções mantidas para compatibilidade
 export async function getDespesasDeputado(id: number): Promise<Despesa[]> {
@@ -290,7 +321,7 @@ export async function getDespesasDeputado(id: number): Promise<Despesa[]> {
       dataDocumento: desp.dataDocumento
     })) as Despesa[];
   } catch (error: any) {
-    console.error("❌ Erro ao buscar despesas:", error.message);
+    console.error("Erro ao buscar despesas:", error.message);
     return [];
   }
 }
@@ -305,7 +336,7 @@ export async function getProposicoesDeputado(id: number): Promise<Proposicao[]> 
     
     return data.dados as Proposicao[];
   } catch (error: any) {
-    console.error("❌ Erro ao buscar proposições:", error.message);
+    console.error("Erro ao buscar proposições:", error.message);
     return [];
   }
 }
@@ -320,7 +351,7 @@ export async function getVotacoesDeputado(id: number) {
     
     return data.dados; 
   } catch (error: any) {
-    console.error("❌ Erro ao buscar votações:", error.message);
+    console.error("Erro ao buscar votações:", error.message);
     return [];
   }
 }
@@ -335,7 +366,7 @@ export async function getPartidos(): Promise<Partido[]> {
     
     return data.dados as Partido[];
   } catch (error: any) {
-    console.error("❌ Erro ao buscar partidos:", error.message);
+    console.error("Erro ao buscar partidos:", error.message);
     return [];
   }
 }
