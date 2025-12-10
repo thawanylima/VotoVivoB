@@ -5,9 +5,9 @@ export function Header() {
   return (
     <header className="w-full bg-white border-b-4 border-brasil-green sticky top-0 z-50">
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
-        <div className="flex items-center gap-2 text-3xl font-extrabold text-brasil-blue tracking-tighter">
-           VotoVivo<span className="text-brasil-yellow">.</span>
-        </div>
+        <Link href="/" className="flex items-center gap-2 text-3xl font-extrabold text-brasil-blue tracking-tighter hover:opacity-80 transition-opacity">
+          VotoVivo<span className="text-brasil-yellow">.</span>
+        </Link>
 
         <nav className="hidden md:flex gap-8">
           <Link href="/" className="font-medium text-gray-700 hover:text-brasil-blue py-2 transition-colors">
