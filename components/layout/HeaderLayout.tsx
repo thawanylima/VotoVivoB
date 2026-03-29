@@ -24,6 +24,9 @@ export function Header() {
               </Link>
             </div>
           </div>
+              <Link href="/educativo" className="font-medium text-gray-700 hover:text-brasil-blue py-2 transition-colors">
+                Educativo
+              </Link>
         </nav>
       </div>
     </header>
