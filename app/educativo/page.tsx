@@ -1,3 +1,5 @@
+"use client";
+import { useState } from 'react';
 import { Header } from '@/components/layout/HeaderLayout';
 import Image from "next/image";
 import { 
@@ -5,13 +7,15 @@ import {
   Gavel, Scale, Briefcase, FileText, 
   Eye, Wallet, HelpCircle, ChevronRight,
   User, CheckCircle2, AlertCircle, AlertTriangle, Info, 
-  BookOpen, PenTool, Layers, Search
+  BookOpen, PenTool, Layers, Search, Settings, Home, Clock3
 } from 'lucide-react';
 
+
 export default function EducativoPage() {
+  const [activeTab, setActiveTab] = useState(0);
   const menuItems = [
     { name: 'O Estado', id: 'estado', icon: <Globe size={16} /> },
-    { name: 'Três Poderes', id: 'poderes', icon: <Scale size={16} /> },
+    { name: 'Congresso Nacional', id: 'congresso', icon: <Landmark size={16} /> },
     { name: 'Parlamentares', id: 'parlamentar', icon: <Briefcase size={16} /> },
     { name: 'Custos', id: 'custos', icon: <Wallet size={16} /> },
     { name: 'Emendas', id: 'emendas', icon: <FileText size={16} /> },
@@ -72,101 +76,442 @@ export default function EducativoPage() {
           <div className="lg:col-span-10 space-y-24 scroll-smooth">
             
             {/* O ESTADO */}
+            {/* SEÇÃO: O ESTADO BRASILEIRO */}
             <section id="estado" className="scroll-mt-24">
-              <div className="flex items-center gap-3 mb-10">
-                <div className="p-2 bg-blue-600 rounded-lg text-white">
-                  <Globe size={24} />
-                </div>
-                <h2 className="text-3xl font-bold text-slate-800">O Estado Brasileiro</h2>
+              <div className="text-center mb-16">
+                <h2 className="text-4xl font-black text-slate-900 tracking-tighter mb-4">
+                  O Estado Brasileiro
+                </h2>
+                <p className="text-slate-500 max-w-2xl mx-auto">
+                 O Brasil é formado por diferentes níveis de governo, que atuam de forma autônoma e organizada pela Constituição.
+                </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {[
-                  { title: 'União', desc: 'Assuntos nacionais e defesa.', color: 'border-blue-500', icon: <Landmark className="text-blue-500"/> },
-                  { title: 'Estados', desc: 'Segurança e regionalismo.', color: 'border-green-500', icon: <Building2 className="text-green-500"/> },
-                  { title: 'Municípios', desc: 'Saúde local e transporte.', color: 'border-yellow-500', icon: <Users className="text-yellow-500"/> }
-                ].map((item, i) => (
-                  <div key={i} className={`group p-8 bg-white rounded-3xl border-b-4 ${item.color} shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1`}>
-                    <div className="mb-4">{item.icon}</div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
-                    <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            {/* OS TRÊS PODERES */}
-            <section id="poderes" className="bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-white overflow-hidden relative scroll-mt-24">
-               <div className="absolute bottom-0 right-0 opacity-10 pointer-events-none">
-                  <Scale size={300} />
-               </div>
-               
-               <div className="relative z-10">
-                  <h2 className="text-3xl font-bold mb-10 flex items-center gap-3">
-                    <Scale className="text-blue-400" /> Os Três Poderes
-                  </h2>
-
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                    <div className="md:col-span-4 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10 hover:bg-white/20 transition cursor-default">
-                      <div className="w-12 h-12 bg-blue-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/50">
-                        <Briefcase size={24} />
-                      </div>
-                      <h3 className="text-xl font-bold mb-3 text-blue-300">Executivo</h3>
-                      <p className="text-slate-300 text-sm">Administra e coloca as leis em prática. É quem constrói e gere hospitais e escolas.</p>
-                    </div>
-
-                    <div className="md:col-span-4 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10 hover:bg-white/20 transition cursor-default">
-                      <div className="w-12 h-12 bg-yellow-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-yellow-500/50">
-                        <FileText size={24} />
-                      </div>
-                      <h3 className="text-xl font-bold mb-3 text-yellow-300">Legislativo</h3>
-                      <p className="text-slate-300 text-sm">Cria as leis e fiscaliza o uso do dinheiro. Decidem as regras da sociedade.</p>
-                    </div>
-
-                    <div className="md:col-span-4 bg-white/10 backdrop-blur-md p-8 rounded-3xl border border-white/10 hover:bg-white/20 transition cursor-default">
-                      <div className="w-12 h-12 bg-red-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-red-500/50">
-                        <Gavel size={24} />
-                      </div>
-                      <h3 className="text-xl font-bold mb-3 text-red-300">Judiciário</h3>
-                      <p className="text-slate-300 text-sm">Garante o cumprimento das leis e resolve conflitos através da justiça.</p>
-                    </div>
-                  </div>
-               </div>
-            </section>
-
-            {/* PARLAMENTAR */}
-            <section id="parlamentar" className="grid md:grid-cols-2 gap-12 items-center scroll-mt-24">
-              <div>
-                <h2 className="text-3xl font-bold text-slate-800 mb-6">O que faz um parlamentar?</h2>
-                <div className="space-y-6">
+              <div className="space-y-12">
+                
+                {/* 1. Blocos de Funções */}
+                <div className="grid gap-4">
                   {[
-                    { title: "Criar Leis", desc: "Propõe regras que afetam todo o país.", icon: <FileText size={20}/> },
-                    { title: "Fiscalizar", desc: "Acompanha gastos do governo de perto.", icon: <Eye size={20}/> },
-                    { title: "Orçamento", desc: "Define onde o seu imposto será usado.", icon: <Wallet size={20}/> }
-                  ].map((item, idx) => (
-                    <div key={idx} className="flex gap-4 group">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                        {item.icon}
-                      </div>
-                      <div>
-                        <h4 className="font-bold text-slate-800">{item.title}</h4>
-                        <p className="text-sm text-slate-500">{item.desc}</p>
+                    { 
+                      title: 'Poder Executivo', 
+                      desc: 'Responsável por implementar políticas públicas e executar as leis de forma concreta.', 
+                      bg: 'bg-gradient-to-r from-blue-700 to-blue-500', 
+                      icon: <Settings size={28} /> 
+                    },
+                    { 
+                      title: 'Poder Legislativo', 
+                      desc: 'Atua na criação de normas jurídicas e na fiscalização constante do Executivo.', 
+                      bg: 'bg-gradient-to-r from-green-700 to-green-500', 
+                      icon: <FileText size={28} /> 
+                    },
+                    { 
+                      title: 'Poder Judiciário', 
+                      desc: 'Garante o cumprimento das leis e a proteção dos direitos fundamentais dos cidadãos.', 
+                      bg: 'bg-gradient-to-r from-yellow-500 to-yellow-400', 
+                      icon: <Scale size={28} /> 
+                    }
+                  ].map((item, i) => (
+                    <div key={i} className={`${item.bg} text-white p-1 rounded-[2rem] shadow-md transition-transform hover:scale-[1.01]`}>
+                      <div className="flex flex-col md:flex-row items-center gap-6 px-8 py-4 bg-white/10 rounded-[1.9rem] backdrop-blur-sm">
+                        <div className="p-3 bg-white/20 rounded-full border border-white/30 shrink-0">
+                          {item.icon}
+                        </div>
+                        <div className="text-center md:text-left">
+                          <h3 className="text-xl font-bold mb-1">{item.title}</h3>
+                          <p className="text-sm opacity-90 leading-relaxed font-medium">{item.desc}</p>
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
-              </div>
-              <div className="bg-slate-100 p-4 rounded-[2rem]">
-                 <div className="aspect-video relative rounded-2xl overflow-hidden shadow-2xl">
-                    <Image 
-                      src="/imagens/info3-estado-brasileiro.png" 
-                      alt="Infográfico" 
-                      fill 
-                      className="object-cover"
-                    />
-                 </div>
+
+                {/* 2. Tabela de Esferas */}
+                <div className="mt-16 overflow-x-auto pb-4">
+                  <h3 className="text-xl font-bold text-slate-700 mb-8 text-center md:text-left flex items-center gap-2">
+                    <Search size={20} className="text-blue-500" />
+                    Presença dos Poderes por Esfera Administrativa
+                  </h3>
+                  
+                  <div className="min-w-[900px] bg-white p-4 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                    <table className="w-full border-separate border-spacing-2">
+                      <thead>
+                        <tr className="text-white text-sm font-bold">
+                          <th className="p-4 bg-slate-800 rounded-2xl w-[15%] uppercase tracking-widest text-[10px]">Poder</th>
+                          <th className="p-4 bg-blue-700 rounded-2xl w-[28%] uppercase tracking-widest text-[10px] shadow-inner">Federal</th>
+                          <th className="p-4 bg-green-700 rounded-2xl w-[28%] uppercase tracking-widest text-[10px] shadow-inner">Estadual</th>
+                          <th className="p-4 bg-yellow-500 rounded-2xl w-[28%] uppercase tracking-widest text-[10px] shadow-inner">Municipal</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-white font-bold text-sm">
+                        
+                        {/* LINHA EXECUTIVO */}
+                        <tr>
+                          <td className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                            <div className="flex flex-col items-center gap-1">
+                              <Settings className="text-blue-600" size={24} />
+                              <span className="text-blue-900 text-[10px] uppercase font-black">Executivo</span>
+                            </div>
+                          </td>
+                          {/* Federal */}
+                          <td className="p-5 bg-blue-600 rounded-2xl shadow-md">
+                            <div className="flex items-center gap-4">
+                              <Globe size={32} className="opacity-80 shrink-0" />
+                              <span className="leading-tight">Presidência</span>
+                            </div>
+                          </td>
+                          {/* Estadual */}
+                          <td className="p-5 bg-green-600 rounded-2xl shadow-md">
+                            <div className="flex items-center gap-4">
+                              <Building2 size={32} className="opacity-80 shrink-0" />
+                              <span className="leading-tight">Governador</span>
+                            </div>
+                          </td>
+                          {/* Municipal */}
+                          <td className="p-5 bg-yellow-500 rounded-2xl shadow-md">
+                            <div className="flex items-center gap-4">
+                              <Home size={32} className="opacity-80 shrink-0" />
+                              <span className="leading-tight">Prefeito</span>
+                            </div>
+                          </td>
+                        </tr>
+
+                        {/* LINHA LEGISLATIVO */}
+                        <tr>
+                          <td className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                            <div className="flex flex-col items-center gap-1">
+                              <FileText className="text-green-600" size={24} />
+                              <span className="text-green-900 text-[10px] uppercase font-black">Legislativo</span>
+                            </div>
+                          </td>
+                          {/* Federal */}
+                          <td className="p-5 bg-blue-600 rounded-2xl shadow-md">
+                            <div className="flex items-center gap-4">
+                              <Landmark size={32} className="opacity-80 shrink-0" />
+                              <span className="leading-tight text-xs">Congresso <br/> Nacional</span>
+                            </div>
+                          </td>
+                          {/* Estadual */}
+                          <td className="p-5 bg-green-600 rounded-2xl shadow-md">
+                            <div className="flex items-center gap-4">
+                              <Building2 size={32} className="opacity-80 shrink-0" />
+                              <span className="leading-tight text-xs">Assembleia <br/> Legislativa</span>
+                            </div>
+                          </td>
+                          {/* Municipal */}
+                          <td className="p-5 bg-yellow-500 rounded-2xl shadow-md">
+                            <div className="flex items-center gap-4">
+                              <Users size={32} className="opacity-80 shrink-0" />
+                              <span className="leading-tight text-xs">Câmara <br/> Municipal</span>
+                            </div>
+                          </td>
+                        </tr>
+
+                        {/* LINHA JUDICIÁRIO */}
+                        <tr>
+                          <td className="p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                            <div className="flex flex-col items-center gap-1">
+                              <Scale className="text-yellow-600" size={24} />
+                              <span className="text-yellow-900 text-[10px] uppercase font-black">Judiciário</span>
+                            </div>
+                          </td>
+                          {/* Federal */}
+                          <td className="p-5 bg-blue-600 rounded-2xl shadow-md">
+                            <div className="flex items-center gap-4">
+                              <Gavel size={32} className="opacity-80 shrink-0" />
+                              <span className="leading-tight">Tribunais <br/> Federais</span>
+                            </div>
+                          </td>
+                          {/* Estadual */}
+                          <td className="p-5 bg-green-600 rounded-2xl shadow-md">
+                            <div className="flex items-center gap-4">
+                              <Scale size={32} className="opacity-80 shrink-0" />
+                              <span className="leading-tight">Tribunais <br/> Estaduais</span>
+                            </div>
+                          </td>
+                          {/* Municipal */}
+                          <td className="p-5 bg-slate-200 rounded-2xl shadow-inner border-2 border-dashed border-slate-300">
+                            <div className="flex flex-col items-center justify-center opacity-40 text-slate-600">
+                              <AlertCircle size={24} />
+                              <span className="text-[10px] font-black mt-1">NÃO EXISTE</span>
+                            </div>
+                          </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
               </div>
             </section>
+
+            {/* SEÇÃO: CONGRESSO NACIONAL */}
+            <section id="congresso" className="scroll-mt-24">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl font-black text-slate-900 tracking-tighter mb-4">
+                  O Congresso Nacional
+                </h2>
+                <p className="text-slate-500 max-w-2xl mx-auto">
+                  O Congresso Nacional exerce o Poder Legislativo da União e funciona no sistema <strong>bicameral</strong>, composto pela Câmara dos Deputados e pelo Senado Federal.
+                </p>
+              </div>
+
+              <div className="grid lg:grid-cols-12 gap-8 items-center bg-white p-8 md:p-12 rounded-[3rem] border border-slate-100 shadow-sm relative overflow-hidden">
+                
+                {/* COLUNA ESQUERDA: CÂMARA DOS DEPUTADOS */}
+                <div className="lg:col-span-4 space-y-6">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-3 bg-orange-100 text-orange-600 rounded-2xl">
+                      <Users size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 leading-none">Câmara dos Deputados</h3>
+                      <span className="text-[12px] text-orange-600 font-bold uppercase tracking-wider">Representação do Povo</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    {[
+                      { t: "Composição", d: "513 Deputados Federais eleitos.", icon: <User size={16}/> },
+                      { t: "Sistema Eleitoral", d: "Sistema Proporcional (4 anos).", icon: <Layers size={16}/> },
+                      { t: "Competência", 
+                        d: "• Verificar a aplicação dos recursos públicos\n• Autorizar investigações do Presidente e Ministros", 
+                        icon: <Gavel size={16}/>}
+                    ].map((item, i) => (
+                      <div key={i} className="p-4 bg-orange-50/50 rounded-2xl border border-orange-100 group hover:bg-orange-50 transition-colors">
+                        <div className="flex items-center gap-3 mb-1">
+                          <span className="text-orange-600">{item.icon}</span>
+                          <p className="font-bold text-slate-800 text-sm">{item.t}</p>
+                        </div>
+                        <p className="text-sm text-slate-500 pl-7 whitespace-pre-line leading-relaxed">
+                          {item.d}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="bg-orange-600 text-white p-4 rounded-2xl text-center shadow-lg shadow-orange-200">
+                    <p className="text-[15px] uppercase font-bold opacity-80">Mandato</p>
+                    <p className="text-2xl font-black italic">4 ANOS</p>
+                  </div>
+                </div>
+
+                {/* COLUNA CENTRAL: O ÍCONE DO CONGRESSO */}
+                <div className="lg:col-span-4 flex flex-col items-center justify-center py-10">
+                  <div className="relative w-full aspect-square max-w-[280px] flex items-center justify-center">
+                    {/* Background do centro*/}
+                    <div className="absolute inset-0 bg-gradient-to-br from-orange-400 via-blue-500 to-teal-500 rounded-full opacity-10 animate-pulse" />
+                    <div className="relative z-10 text-center space-y-4">
+                      <div className="bg-slate-900 text-white p-6 rounded-full shadow-2xl border-4 border-white">
+                        <Landmark size={60} />
+                      </div>
+                      <p className="font-black text-slate-900 uppercase tracking-tighter text-xl">Congresso <br/> Nacional</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* COLUNA DIREITA: SENADO FEDERAL */}
+                <div className="lg:col-span-4 space-y-6">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="p-3 bg-teal-100 text-teal-600 rounded-2xl">
+                      <Globe size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-slate-900 leading-none">Senado Federal</h3>
+                      <span className="text-[12px] text-teal-600 font-bold uppercase tracking-wider">Representação dos Estados</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    {[
+                      { t: "Composição", d: "81 Senadores (3 por estado/DF).", icon: <Users size={16}/> },
+                      { t: "Sistema Eleitoral", d: "Sistema Majoritário (8 anos).", icon: <CheckCircle2 size={16}/> },
+                      { 
+                        t: "Competência", 
+                        d: "• Aprova cargos (STF, PGR)\n• Define limites da dívida\n • Julga o Presidente e autoridades", 
+                        icon: <Scale size={16}/> 
+                      }
+                    ].map((item, i) => (
+                      <div key={i} className="p-4 bg-teal-50/50 rounded-2xl border border-teal-100 group hover:bg-teal-50 transition-colors text-left">
+                        <div className="flex items-center gap-3 mb-1 justify-start">
+                          <span className="text-teal-600">{item.icon}</span>
+                          <p className="font-bold text-slate-800 text-sm">{item.t}</p>
+                        </div>
+                        <p className="text-sm text-slate-500 pl-7 whitespace-pre-line leading-relaxed">
+                          {item.d}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-teal-600 text-white p-4 rounded-2xl text-center shadow-lg shadow-teal-200">
+                    <p className="text-[15px] uppercase font-bold opacity-80">Mandato</p>
+                    <p className="text-2xl font-black italic">8 ANOS</p>
+                  </div>
+                </div>
+
+                {/* RODAPÉ DO CARD: FUNÇÕES COMPARTILHADAS */}
+                <div className="lg:col-span-12 mt-12 pt-8 border-t border-slate-100">
+                  <p className="text-center text-[20px] font-black uppercase tracking-[0.2em] text-slate-600 mb-8">Funções Compartilhadas</p>
+                  <div className="grid md:grid-cols-3 gap-6">
+                    <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-2xl">
+                      <FileText className="text-blue-500 shrink-0" size={20} />
+                      <div>
+                        <p className="font-bold text-slate-800 text-sm">Legislação</p>
+                        <p className="text-[18px] text-slate-500 leading-tight text-justify">Elaboram leis de competência federal em conjunto.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-2xl">
+                      <Search className="text-blue-500 shrink-0" size={20} />
+                      <div>
+                        <p className="font-bold text-slate-800 text-sm">Fiscalização</p>
+                        <p className="text-[18px] text-slate-500 leading-tight">Controlam as contas e atos do Poder Executivo.</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3 p-4 bg-slate-50 rounded-2xl">
+                      <Users className="text-blue-500 shrink-0" size={20} />
+                      <div>
+                        <p className="font-bold text-slate-800 text-sm">Atuação Conjunta</p>
+                        <p className="text-[18px] text-slate-500 leading-tight">Votam o orçamento e empossam o Presidente.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* PARLAMENTAR */}
+        <section id="parlamentar" className="scroll-mt-24 px-4">
+          <div className="max-w-7xl mx-auto">
+            
+            {/* Cabeçalho da Seção */}
+            <div className="mb-12 border-b border-slate-200 pb-12 text-center max-w-3xl mx-auto">
+              <h2 className="text-4xl font-black text-slate-900 tracking-tighter mb-4">
+                O Papel do Parlamentar
+              </h2>
+              <p className="text-slate-600 leading-relaxed text-lg">
+                Os deputados e senadores são os representantes eleitos pelo povo. Sua missão é traduzir as demandas da sociedade em leis, fiscalizar o uso do dinheiro público e participar ativamente das decisões fundamentais do país.
+              </p>
+            </div>
+
+            {/* Navegação das Abas (Pills Style) */}
+            <div className="flex items-center justify-center mb-16">
+              <div className="inline-flex gap-2 bg-white p-2 rounded-full border border-slate-200 shadow-sm">
+                {[
+                  { name: "Poderes & Competências", icon: <Gavel size={18} /> },
+                  { name: "Ação e Dia a Dia", icon: <Clock3 size={18} /> }
+                ].map((tab, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveTab(index)}
+                    className={`flex items-center gap-2.5 px-6 py-2.5 rounded-full text-sm font-bold transition-colors whitespace-nowrap ${
+                      activeTab === index 
+                        ? "bg-blue-600 text-white shadow-lg" 
+                        : "text-slate-600 hover:bg-blue-50 hover:text-blue-700"
+                    }`}
+                  >
+                    {tab.icon}
+                    {tab.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Conteúdo das Abas */}
+            <div className="grid grid-cols-1 gap-12">
+              
+              {/* ABA 0: PODERES & COMPETÊNCIAS - Layout Bento Matrix */}
+              {activeTab === 0 && (
+                <div className="grid md:grid-cols-2 gap-8 transition-opacity duration-300 opacity-100">
+                  
+                  {/* Função Legislativa - Destaque Largo */}
+                  <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm relative overflow-hidden group">
+                    <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform text-blue-900">
+                      <FileText size={120} />
+                    </div>
+                    <div className="relative z-10 flex flex-col h-full">
+                      <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl w-fit mb-6">
+                        <FileText size={28} />
+                      </div>
+                      <h3 className="text-2xl font-bold text-slate-900 mb-2">Função Legislativa</h3>
+                      <p className="text-slate-500 text-sm mb-6 max-w-md">Propõe, debate e vota as leis federais, emendas à Constituição e medidas provisórias.</p>
+                      
+                      {/* Lista de Ações Específicas */}
+                      <ul className="space-y-2.5 border-t border-slate-100 pt-5 mt-auto text-sm text-slate-600">
+                        <li className="flex items-start gap-2.5"><CheckCircle2 size={16} className="text-green-500 mt-0.5 shrink-0"/> Propor novas leis e códigos</li>
+                        <li className="flex items-start gap-2.5"><CheckCircle2 size={16} className="text-green-500 mt-0.5 shrink-0"/> Alterar a Constituição Federal</li>
+                        <li className="flex items-start gap-2.5"><CheckCircle2 size={16} className="text-green-500 mt-0.5 shrink-0"/> Votar tratados internacionais</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Outras Funções em Grid Menor */}
+                  <div className="grid grid-cols-2 gap-6">
+                    {/* Função Fiscalizadora */}
+                    <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm group">
+                      <Eye className="text-green-600 mb-4" size={24} />
+                      <h4 className="font-bold text-slate-900 mb-1">Fiscalizadora</h4>
+                      <p className="text-[15px] text-slate-500 leading-tight">Controla os gastos do Governo e convoca ministros para dar explicações.</p>
+                    </div>
+                    {/* Função Orçamentária */}
+                    <div className="p-6 bg-white rounded-2xl border border-slate-200 shadow-sm group">
+                      <Wallet className="text-yellow-600 mb-4" size={24} />
+                      <h4 className="font-bold text-slate-900 mb-1">Orçamentária</h4>
+                      <p className="text-[15px] text-slate-500 leading-tight">Define onde e quanto o Governo deve investir o dinheiro público.</p>
+                    </div>
+                    {/* Função Julgadora (Destaque Largo) */}
+                    <div className="col-span-2 p-6 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center gap-6 group hover:shadow-md transition-all">
+                      <div className="p-3 bg-red-50 text-red-600 rounded-xl shrink-0">
+                        <Scale size={32} />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-slate-900 mb-1">Função Julgadora e Autorizadora</h4>
+                        <p className="text-xs text-slate-500 leading-relaxed max-w-md">
+                          Aprova indicações de autoridades (como ministros do STF) e autoriza a abertura de processos contra o Presidente da República.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* ABA 1: AÇÃO E DIA A DIA - Layout de Timeline Moderna */}
+              {activeTab === 1 && (
+                <div className="max-w-4xl mx-auto transition-opacity duration-300 opacity-100">
+                  <p className="text-center text-slate-500 mb-12 max-w-lg mx-auto leading-relaxed">
+                    A rotina parlamentar deve ir além do plenário. Descubra os diferentes cenários onde eles devem atuam para transformar propostas em realidade.
+                  </p>
+                  
+                  <div className="relative border-l-2 border-dashed border-blue-200 ml-6 space-y-12 pb-10">
+                    {[
+                      { title: "No Gabinete", desc: "Reuniões com assessoria e recepção de demandas de prefeitos e eleitores.", icon: <User size={18}/> },
+                      { title: "Nas Comissões", desc: "Debate técnico e detalhado de projetos de lei e audiências públicas.", icon: <BookOpen size={18}/> },
+                      { title: "No Plenário", desc: "Votação formal e decisiva de projetos e grandes temas nacionais.", icon: <Users size={18}/> },
+                      { title: "Nas Bases Eleitorais", desc: "Contato direto com a população para ouvir problemas e fiscalizar obras locais.", icon: <Home size={18}/> }
+                    ].map((item, i) => (
+                      <div key={i} className="relative pl-12 flex items-start gap-5 group">
+                        {/* Bullet da Timeline */}
+                        <div className="absolute -left-[11px] top-1.5 w-5 h-5 rounded-full bg-blue-600 border-4 border-white shadow-sm group-hover:scale-110 transition-transform" />
+                        
+                        {/* Ícone Contextual */}
+                        <div className="flex-shrink-0 p-3 bg-white rounded-xl border border-blue-100 text-blue-600 shadow-sm mt-0.5">
+                          {item.icon}
+                        </div>
+                        
+                        {/* Texto */}
+                        <div>
+                          <h4 className="font-bold text-lg text-slate-950 mb-1 tracking-tight">{item.title}</h4>
+                          <p className="text-sm text-slate-600 leading-relaxed max-w-xl">{item.desc}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+            </div>
+          </div>
+        </section>
 
             {/* CUSTOS */}
             <section id="custos" className="py-16 scroll-mt-24">
