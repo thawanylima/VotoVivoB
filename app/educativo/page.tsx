@@ -51,7 +51,7 @@ export default function EducativoPage() {
         {/* ESTRUTURA COM SIDEBAR */}
         <div className="max-w-7xl mx-auto px-6 mt-16 lg:grid lg:grid-cols-12 lg:gap-8">
           
-          {/* STICKY SIDEBAR (Proporção Menor: col-span-2) */}
+          {/* STICKY SIDEBAR */}
           <aside className="hidden lg:block lg:col-span-2">
             <nav className="sticky top-24 space-y-0.5 border-l border-slate-200 ml-2">
               <p className="text-[10px] uppercase tracking-[0.15em] font-bold text-slate-400 mb-4 pl-4">
@@ -75,8 +75,7 @@ export default function EducativoPage() {
           {/* CONTEÚDO PRINCIPAL */}
           <div className="lg:col-span-10 space-y-24 scroll-smooth">
             
-            {/* O ESTADO */}
-            {/* SEÇÃO: O ESTADO BRASILEIRO */}
+            {/*O ESTADO BRASILEIRO */}
             <section id="estado" className="scroll-mt-24">
               <div className="text-center mb-16">
                 <h2 className="text-4xl font-black text-slate-900 tracking-tighter mb-4">
@@ -475,7 +474,7 @@ export default function EducativoPage() {
                 </div>
               )}
 
-              {/* ABA 1: AÇÃO E DIA A DIA - Layout de Timeline Moderna */}
+              {/* ABA 1: AÇÃO E DIA A DIA - Layout de Timeline*/}
               {activeTab === 1 && (
                 <div className="max-w-4xl mx-auto transition-opacity duration-300 opacity-100">
                   <p className="text-center text-slate-500 mb-12 max-w-lg mx-auto leading-relaxed">
@@ -513,49 +512,119 @@ export default function EducativoPage() {
           </div>
         </section>
 
-            {/* CUSTOS */}
-            <section id="custos" className="py-16 scroll-mt-24">
-              <h2 className="text-3xl font-bold text-slate-800 mb-10 flex items-center gap-3">
-                <Wallet className="text-green-600" /> Transparência e Custos
+            {/* SEÇÃO: CUSTOS */}
+          <section id="custos" className="py-16 scroll-mt-24">
+            <div className="flex flex-col items-center text-center mb-12">
+              <div className="p-3 bg-green-600 rounded-2xl text-white mb-4 shadow-lg shadow-green-200">
+                <Wallet size={28} />
+              </div>
+              <h2 className="text-4xl font-black text-slate-900 tracking-tighter">
+                Quanto custa um parlamentar
               </h2>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm hover:border-green-200 transition-all">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Remuneração</span>
-                  <h3 className="text-4xl font-black text-slate-900 mt-2">R$ 46.366</h3>
-                  <p className="text-sm text-slate-500 mt-4 leading-relaxed">
-                    Valor bruto mensal para Deputados e Senadores.
-                  </p>
+              <div className="w-12 h-1.5 bg-green-500 rounded-full mt-4" /> {/* Linha decorativa*/}
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* CARD DESTAQUE: CUSTO TOTAL */}
+              <div className="md:col-span-2 bg-gradient-to-br from-slate-800 to-slate-800 p-8 rounded-[2.5rem] text-white flex flex-col md:flex-row justify-between items-center border border-slate-700 shadow-xl relative overflow-hidden group">
+                <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:rotate-12 transition-transform">
+                  <Landmark size={120} />
                 </div>
-                <div className="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Equipe (Gabinete)</span>
-                  <h3 className="text-2xl font-bold text-slate-900 mt-2">Até R$ 118 mil</h3>
-                  <p className="text-sm text-slate-500 mt-4">
-                    Destinado exclusivamente para assessores.
-                  </p>
+                <div className="relative z-10 text-center md:text-left mb-6 md:mb-0">
+                  <span className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border border-blue-500/30">
+                    Estimativa Mensal
+                  </span>
+                  <h3 className="text-2xl font-bold mt-3">Custo Total de Manutenção</h3>
+                  <p className="text-slate-400 text-sm max-w-sm mt-1">Valor aproximado para manter toda a estrutura de <strong>um parlamentar</strong> ativa.</p>
                 </div>
-                <div className="bg-white p-8 rounded-[2rem] border border-slate-200 shadow-sm">
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">Atividade (CEAP)</span>
-                  <h3 className="text-2xl font-bold text-slate-900 mt-2">~ R$ 45 mil</h3>
-                  <p className="text-sm text-slate-500 mt-4">
-                    Custeio da atividade parlamentar.
-                  </p>
+                <div className="relative z-10 text-center md:text-right">
+                  <p className="text-sm text-blue-400 font-bold uppercase mb-1">💸 Investimento Médio</p>
+                  <h2 className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 leading-none">
+                    R$ 200 mil a R$ 500 mil+
+                  </h2>
                 </div>
               </div>
-            </section>
 
-            {/* EMENDAS */}
-            <section id="emendas" className="py-20 px-4 bg-slate-50/50 rounded-[3rem] scroll-mt-24">
-            <div className="max-w-6xl mx-auto">
-              <div className="mb-12">
-                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">
-                  Emendas Parlamentares
-                </h2>
-                <p className="text-slate-500 max-w-xl">
-                  Recursos do orçamento público que os congressistas devem direcionar para obras e projetos em suas bases eleitorais.
+              {/* SALÁRIO */}
+              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm hover:border-blue-200 transition-all group">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl">
+                    <Wallet size={20} />
+                  </div>
+                  <span className="text-[20px] font-bold text-slate-600 uppercase tracking-widest">Salário</span>
+                </div>
+                <h4 className="text-3xl font-black text-slate-900 mb-2">R$ 46 mil</h4>
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                  Remuneração base mensal igual para deputados e senadores.
                 </p>
               </div>
 
+              {/* EQUIPE GABINETE */}
+              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm hover:border-green-200 transition-all">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-green-50 text-green-600 rounded-2xl">
+                    <Users size={20} />
+                  </div>
+                  <span className="text-[20px] font-bold text-slate-600 uppercase tracking-widest">Gabinete</span>
+                </div>
+                <div className="flex flex-col sm:flex-row sm:gap-8 gap-2">
+                  <div>
+                    <h4 className="text-2xl font-black text-slate-900 leading-none tracking-tight">Até R$ 118 mil</h4>
+                    <span className="text-[15px] font-medium text-slate-400 uppercase">Deputados</span>
+                  </div>
+                  <div>
+                    <h4 className="text-2xl font-black text-slate-900 leading-none tracking-tight">~ R$ 497 mil</h4>
+                    <span className="text-[15px] font-medium text-slate-400 uppercase">Senadores</span>
+                  </div>
+                </div>
+                <p className="text-xs text-slate-500 mt-4 leading-relaxed font-medium">
+                  Pagamento de funcionários e assessores do gabinete.
+                </p>
+              </div>
+
+              {/* COTA PARLAMENTAR */}
+              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm hover:border-yellow-200 transition-all">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-yellow-50 text-yellow-600 rounded-2xl">
+                    <FileText size={20} />
+                  </div>
+                  <span className="text-[20px] font-bold text-slate-600 uppercase tracking-widest">Cota (CEAP)</span>
+                </div>
+                <h4 className="text-3xl font-black text-slate-900 mb-2">R$ 21 mil a R$ 58 mil</h4>
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                  Transporte, escritório, serviços e atividades do mandato.
+                </p>
+              </div>
+
+              {/* BENEFÍCIOS */}
+              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm hover:border-red-200 transition-all">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="p-3 bg-red-50 text-red-600 rounded-2xl">
+                    <Home size={20} />
+                  </div>
+                  <span className="text-[20px] font-bold text-slate-600 uppercase tracking-widest">Benefícios</span>
+                </div>
+                <h4 className="text-3xl font-black text-slate-900 mb-2">Até R$ 5,5 mil</h4>
+                <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                  Inclui auxílio-moradia, saúde e ajuda de custo.
+                </p>
+              </div>
+
+            </div>
+          </section>
+
+            {/* EMENDAS */}
+          <section id="emendas" className="py-20 px-4 bg-slate-50/50 rounded-[3rem] scroll-mt-24">
+            
+            <div className="max-w-6xl mx-auto">
+              <div className="mb-12 border-b border-slate-200 pb-12 text-center max-w-3xl mx-auto">
+                <h2 className="text-4xl font-black text-slate-900 tracking-tighter mb-4">
+                  Emendas Parlamentares
+                </h2>
+                <p className="text-slate-600 leading-relaxed text-lg">
+                  Recursos do orçamento público que os congressistas devem direcionar para obras e projetos em suas bases eleitorais.
+                </p>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                 
                 {/* 1. EMENDAS INDIVIDUAIS - (Largo) */}
