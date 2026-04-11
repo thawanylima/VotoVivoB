@@ -546,70 +546,143 @@ export default function EducativoPage() {
 
             {/* EMENDAS */}
             <section id="emendas" className="py-20 px-4 bg-slate-50/50 rounded-[3rem] scroll-mt-24">
-                <div className="max-w-6xl mx-auto">
-                <div className="mb-12">
-                    <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">
-                    Emendas Parlamentares
-                    </h2>
-                    <p className="text-slate-500 max-w-xl">
-                    Recursos do orçamento público direcionados pelos congressistas para obras e projetos regionais.
+            <div className="max-w-6xl mx-auto">
+              <div className="mb-12">
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-4">
+                  Emendas Parlamentares
+                </h2>
+                <p className="text-slate-500 max-w-xl">
+                  Recursos do orçamento público que os congressistas devem direcionar para obras e projetos em suas bases eleitorais.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                
+                {/* 1. EMENDAS INDIVIDUAIS - (Largo) */}
+                <div className="md:col-span-8 bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform">
+                    <User size={120} />
+                  </div>
+                  
+                  <div className="flex flex-col h-full">
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl">
+                        <User size={28} />
+                      </div>
+                      <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wider">
+                        <CheckCircle2 size={12} /> Obrigatória
+                      </span>
+                    </div>
+
+                    <h3 className="text-2xl font-bold text-slate-900 mb-2">Emendas Individuais</h3>
+                    <p className="text-slate-500 text-sm mb-6 max-w-md">
+                      Cada parlamentar tem uma cota individual para indicar. Metade desse recurso deve, obrigatoriamente, ir para a <strong>Saúde</strong>.
                     </p>
+
+                    <div className="grid sm:grid-cols-3 gap-4 mt-auto">
+                      <div className="sm:col-span-1 p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                        <p className="font-bold text-slate-800 text-sm mb-1">Projeto Específico</p>
+                        <p className="text-xs text-slate-500">Exige projeto, aprovação formal e convênio assinado com o estado ou município beneficiado.</p>
+                      </div>
+                      <div className="sm:col-span-2 p-5 bg-orange-50/50 rounded-2xl border border-orange-200 relative group/pix">
+                        <div className="flex items-center justify-between mb-2">
+                          <p className="font-bold text-orange-900 text-sm">Transferência Especial</p>
+                          <div className="flex items-center gap-1 text-red-400 bg-red-400/10 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                            <AlertCircle size={12} /> Críticas à Transparência
+                          </div>
+                        </div>
+                        <p className="text-xs text-orange-800"><strong>Emendas Pix:</strong> O dinheiro é enviado diretamente, sem definição detalhada inicial.</p>
+                        
+                        <div className="flex items-start gap-2 p-3 bg-white/60 rounded-xl border border-orange-100">
+                          <AlertCircle size={14} className="text-orange-600 shrink-0 mt-0.5" />
+                          <p className="text-[11px] text-orange-900/80 leading-tight font-medium">
+                            <strong>Debate Crítico:</strong> Alvo de discussões entre Congresso e STF por baixa transparência e dificuldade de rastreio.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-                    <div className="md:col-span-8 bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform">
-                            <User size={120} />
-                        </div>
-                        <div className="flex flex-col h-full">
-                            <div className="flex justify-between items-start mb-6">
-                                <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl">
-                                    <User size={28} />
-                                </div>
-                                <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wider">
-                                    <CheckCircle2 size={12} /> Obrigatória
-                                </span>
-                            </div>
-                            <h3 className="text-2xl font-bold text-slate-900 mb-2">Emendas Individuais</h3>
-                            <p className="text-slate-500 text-sm mb-6 max-w-md">Metade do recurso deve ir para a <strong>Saúde</strong>.</p>
-                            <div className="grid sm:grid-cols-3 gap-4 mt-auto">
-                                <div className="sm:col-span-1 p-4 bg-slate-50 rounded-2xl border border-slate-100 text-xs">
-                                    <p className="font-bold text-slate-800 mb-1">Projeto Específico</p>
-                                    <p className="text-slate-500">Destino formal com contrato assinado.</p>
-                                </div>
-                                <div className="sm:col-span-2 p-5 bg-orange-50/50 rounded-2xl border border-orange-200 relative">
-                                    <p className="font-bold text-orange-900 text-sm mb-1">Transferência Especial (PIX)</p>
-                                    <p className="text-[11px] text-orange-800 leading-tight">Envio direto sem definição detalhada inicial. Alvo de debate no STF por baixa transparência.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="md:col-span-4 bg-white p-8 rounded-[2.5rem] border border-slate-200">
-                        <Users size={28} className="text-indigo-600 mb-6" />
-                        <h3 className="text-xl font-bold text-slate-900 mb-2">Bancada</h3>
-                        <p className="text-slate-500 text-sm">Decididas pelo conjunto de parlamentares de um estado.</p>
-                    </div>
-
-                    <div className="md:col-span-6 bg-white p-8 rounded-[2.5rem] border border-slate-200 flex gap-6">
-                        <BookOpen size={28} className="text-amber-600 shrink-0" />
-                        <div>
-                            <h3 className="text-xl font-bold text-slate-900 mb-1">Comissão</h3>
-                            <p className="text-slate-500 text-sm italic underline">Não obrigatória.</p>
-                        </div>
-                    </div>
-
-                    <div className="md:col-span-6 bg-white p-8 rounded-[2.5rem] border border-slate-200 relative overflow-hidden">
-                        <div className="flex justify-between items-start mb-4">
-                            <PenTool size={28} className="text-amber-700" />
-                            <span className="px-2 py-1 rounded bg-red-50 text-red-700 text-[10px] font-bold">CRÍTICA À TRANSPARÊNCIA</span>
-                        </div>
-                        <h3 className="text-xl font-bold text-slate-900 mb-2">Relator (RP9)</h3>
-                        <p className="text-sm text-slate-600">O polêmico "Orçamento Secreto".</p>
-                    </div>
+                {/* 2. EMENDAS DE BANCADA - Vertical */}
+                <div className="md:col-span-4 bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-md transition-all">
+                  <div className="p-3 bg-indigo-50 text-indigo-600 rounded-2xl w-fit mb-6">
+                    <Users size={28} />
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-2">Emendas de Bancada</h3>
+                  <p className="text-slate-500 text-sm mb-6 leading-relaxed">
+                    Decididas em conjunto pelos parlamentares de um mesmo estado para <strong>grandes obras regionais</strong>.
+                  </p>
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-[10px] font-bold uppercase">
+                    Impacto Regional
+                  </div>
                 </div>
+
+                {/* 3. EMENDAS DE COMISSÃO - Horizontal Médio */}
+                <div className="md:col-span-6 bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm flex flex-col sm:flex-row gap-6 items-start">
+                  <div className="p-3 bg-amber-50 text-amber-600 rounded-2xl shrink-0">
+                    <BookOpen size={28} />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-3 mb-2">
+                      <h3 className="text-xl font-bold text-slate-900">Emendas de Comissão</h3>
+                      <span className="px-2 py-0.5 rounded bg-amber-100 text-amber-700 text-[10px] font-bold uppercase tracking-tighter">
+                        Não Obrigatória
+                      </span>
+                    </div>
+                    <p className="text-slate-500 text-sm">
+                      Criadas por grupos temáticos (Saúde, Educação, etc). O governo tem poder de decisão sobre o pagamento.
+                    </p>
+                  </div>
                 </div>
-            </section>
+
+                {/* 4. EMENDAS DE RELATOR (RP9) - Estilo Claro com Atenção */}
+                <div className="md:col-span-6 bg-white p-8 rounded-[2.5rem] border border-slate-200 shadow-sm hover:shadow-md transition-all relative overflow-hidden group">
+                  
+                  {/* Ícone de Fundo Sutil (Opacidade 5%) */}
+                  <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:scale-110 transition-transform">
+                    <PenTool size={120} className="text-amber-900" />
+                  </div>
+
+                  <div className="relative z-10 flex flex-col h-full">
+                    {/* Cabeçalho do Card (Semelhante à Transferência Especial da imagem) */}
+                    <div className="flex justify-between items-start mb-6 gap-3">
+                      <div className="p-3 bg-amber-50 text-amber-700 rounded-2xl border border-amber-100/50">
+                        <PenTool size={28} />
+                      </div>
+                      
+                      {/* Badge de Destaque Crítico (Igual ao 'Críticas à transparência' da imagem) */}
+                      <span className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50 text-red-700 text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">
+                        <AlertTriangle size={12} className="text-red-500" />
+                        Críticas à Transparência
+                      </span>
+                    </div>
+
+                    {/* Título e Texto */}
+                    <h3 className="text-xl md:text-2xl font-black text-slate-900 mb-2 tracking-tight">
+                      Emendas de Relator (RP9)
+                    </h3>
+                    <p className="text-sm text-slate-600 mb-6 leading-relaxed">
+                      Originalmente usadas para ajustes orçamentários, tornaram-se controversas e ganharam o apelido de 
+                      <strong className="text-amber-800"> "Orçamento Secreto"</strong> pela baixa rastreabilidade e centralização de poder.
+                    </p>
+
+                    {/* Box de Nota Crítica (Estilo 'Debate Crítico' da imagem) */}
+                    <div className="mt-auto flex items-start gap-3 p-4 bg-amber-50 rounded-xl border border-amber-100">
+                      <Scale size={18} className="text-amber-600 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="text-xs text-amber-900/80 leading-relaxed">
+                          <strong className="text-amber-950 font-bold">Ação do STF:</strong> Parte deste mecanismo foi considerado inconstitucional pelo STF devido à falta de transparência e necessidade de controle republicano sobre as verbas.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
 
             {/* COMO NASCE A LEI */}
             <section id="lei" className="py-16 scroll-mt-24">
@@ -630,26 +703,118 @@ export default function EducativoPage() {
               </div>
             </section>
 
-            {/* SISTEMA ELEITORAL */}
+            {/* SEÇÃO SISTEMA ELEITORAL */}
             <section id="sistema" className="mb-24 scroll-mt-24">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-4">Sistema Eleitoral</h2>
-                    <p className="text-slate-500 max-w-2xl mx-auto italic">Majoritário (Executivo/Senado) e Proporcional (Legislativo).</p>
+              <div className="flex flex-col items-center text-center mb-12">
+                {/* Ícone ou Badge Superior (Opcional) */}
+                <span className="bg-green-50 text-green-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                  Entenda as Urnas
+                </span>
+                
+                <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-6">
+                  Sistema Eleitoral Brasileiro
+                </h2>
+
+                {/* O SUBTÍTULO SOLICITADO */}
+                <div className="max-w-2xl mx-auto space-y-2">
+                  <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
+                    O sistema eleitoral define como os votos são transformados em representantes eleitos.
+                  </p>
+                  <p className="text-base text-slate-500 font-medium italic">
+                    No Brasil, existem dois modelos principais: <span className="text-blue-600">majoritário</span> e <span className="text-green-600">proporcional</span>.
+                  </p>
                 </div>
-                <div className="grid md:grid-cols-2 gap-8 mb-12">
-                    <div className="bg-white p-8 rounded-3xl border border-slate-100">
-                        <div className="px-6 py-3 rounded-full bg-blue-50 text-blue-700 font-bold w-fit mb-5">Voto Majoritário</div>
-                        <p className="text-slate-600 text-sm">O mais votado vence. Simples assim.</p>
+              </div>
+
+              {/* CARDS COMPARATIVOS (Majoritário vs Proporcional) */}
+              <div className="grid md:grid-cols-2 gap-8 mb-12">
+                {/* Majoritário */}
+                <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-50 text-blue-700 text-sm md:text-base font-bold mb-5">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                    </span>
+                    Voto Majoritário
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-950 mb-3">O Mais Votado Vence</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                    Sistema direto: quem recebe mais votos, ganha.
+                    Se ninguém atingir maioria absoluta (mais de 50%), ocorre segundo turno.
+                  </p>
+                  <div className="space-y-2.5 border-t border-slate-100 pt-5">
+                    <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">Aplica-se para:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {['Presidente', 'Governador', 'Prefeito', 'Senador'].map(cargo => (
+                        <span key={cargo} className="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-full font-medium">
+                          {cargo}
+                        </span>
+                      ))}
                     </div>
-                    <div className="bg-white p-8 rounded-3xl border border-slate-100">
-                        <div className="px-6 py-3 rounded-full bg-green-50 text-green-700 font-bold w-fit mb-5">Voto Proporcional</div>
-                        <p className="text-slate-600 text-sm">Vagas distribuídas pelo cálculo do partido.</p>
+                  </div>
+                </div>
+
+                {/* Proporcional */}
+                <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300">
+                  <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-50 text-green-700 text-sm md:text-base font-bold mb-5">
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    Voto Proporcional
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-950 mb-3">Vagas distribuídas por partido</h3>
+                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                    Não vence só o mais votado. Os votos vão para o partido ou federação. As vagas são distribuídas conforme o total de votos recebidos.
+                  </p>
+                  <div className="space-y-2.5 border-t border-slate-100 pt-5">
+                    <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">Aplica-se para:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {['Deputado Federal', 'Deputado Estadual', 'Vereador'].map(cargo => (
+                        <span key={cargo} className="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-full font-medium">
+                          {cargo}
+                        </span>
+                      ))}
                     </div>
+                  </div>
                 </div>
-                <div className="aspect-video relative rounded-2xl overflow-hidden border-4 border-white shadow-xl">
-                    <Image src="/imagens/info-sistema-eleitoral.png" alt="Infográfico" fill className="object-cover" />
+              </div>
+
+              {/* O INFOGRÁFICO PAISAGEM */}
+              <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[2rem] border border-slate-100 shadow-inner">
+                <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl shadow-slate-200/70 border-4 border-white">
+                  <Image
+                    src="/imagens/info-eleitoral-majoritatio-proporcional.png" 
+                    alt="Infográfico detalhado comparando o sistema eleitoral majoritário e proporcional no Brasil"
+                    fill 
+                    sizes="(max-w-7xl) 100vw, 1200px" 
+                    className="object-cover object-center" 
+                    priority 
+                  />
                 </div>
+                <p className="text-center text-xs text-slate-400 mt-5 italic">
+                  Fonte: .
+                </p>
+              </div>
+
+              {/* O INFOGRÁFICO PAISAGEM */}
+              <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[2rem] border border-slate-100 shadow-inner">
+                <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl shadow-slate-200/70 border-4 border-white">
+                  <Image
+                    src="/imagens/info-sistema-eleitoral.png" 
+                    alt="Infográfico detalhado comparando o sistema eleitoral majoritário e proporcional no Brasil"
+                    fill 
+                    sizes="(max-w-7xl) 100vw, 1200px" 
+                    className="object-cover object-center" 
+                    priority 
+                  />
+                </div>
+                <p className="text-center text-xs text-slate-400 mt-5 italic">
+                  Fonte: .
+                </p>
+              </div>
             </section>
+
 
             {/* FAQ */}
             <section id="faq" className="max-w-3xl mx-auto py-20 scroll-mt-24">
