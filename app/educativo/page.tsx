@@ -7,7 +7,7 @@ import {
   Gavel, Scale, Briefcase, FileText, 
   Eye, Wallet, HelpCircle, ChevronRight,
   User, CheckCircle2, AlertCircle, AlertTriangle, Info, 
-  BookOpen, PenTool, Layers, Search, Settings, Home, Clock3
+  BookOpen, PenTool, Layers, Search, Settings, Home, Clock3, RotateCcw
 } from 'lucide-react';
 
 
@@ -20,7 +20,7 @@ export default function EducativoPage() {
     { name: 'Custos', id: 'custos', icon: <Wallet size={16} /> },
     { name: 'Emendas', id: 'emendas', icon: <FileText size={16} /> },
     { name: 'Como nasce a Lei', id: 'lei', icon: <PenTool size={16} /> },
-    { name: 'Sistema Eleitoral', id: 'sistema', icon: <Layers size={16} /> },
+    { name: 'Sistema Eleitoral', id: 'eleitoral', icon: <Layers size={16} /> },
     { name: 'FAQ', id: 'faq', icon: <HelpCircle size={16} /> },
   ];
 
@@ -512,7 +512,7 @@ export default function EducativoPage() {
           </div>
         </section>
 
-            {/* SEÇÃO: CUSTOS */}
+          {/* SEÇÃO: CUSTOS */}
           <section id="custos" className="py-16 scroll-mt-24">
             <div className="flex flex-col items-center text-center mb-12">
               <div className="p-3 bg-green-600 rounded-2xl text-white mb-4 shadow-lg shadow-green-200">
@@ -613,7 +613,7 @@ export default function EducativoPage() {
             </div>
           </section>
 
-            {/* EMENDAS */}
+          {/* EMENDAS */}
           <section id="emendas" className="py-20 px-4 bg-slate-50/50 rounded-[3rem] scroll-mt-24">
             
             <div className="max-w-6xl mx-auto">
@@ -752,67 +752,159 @@ export default function EducativoPage() {
             </div>
           </section>
 
+          {/* SEÇÃO: A JORNADA DE UMA LEI */}
+          <section id="lei" className="py-20 scroll-mt-24 overflow-hidden">
+            <div className="text-center mb-16">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-wider mb-4">
+                <Scale size={14} /> Processo Legislativo
+              </div>
+              <h2 className="text-4xl font-black text-slate-900 tracking-tighter mb-4">
+                Como nasce uma lei?
+              </h2>
+              <p className="text-slate-500 max-w-xl mx-auto text-sm">
+                Uma lei percorre um caminho rigoroso de debates e votações para garantir que atenda aos interesses da sociedade.
+              </p>
+            </div>
 
-            {/* COMO NASCE A LEI */}
-            <section id="lei" className="py-16 scroll-mt-24">
-              <h2 className="text-3xl font-bold text-slate-800 mb-10 text-center">A Jornada de uma Lei</h2>
-              <div className="relative border-l-2 border-dashed border-blue-200 ml-6 space-y-12">
+            {/* Container do Fluxo */}
+            <div className="relative">
+              {/* Linha Conectora (Desktop) */}
+              <div className="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 border-t-2 border-dashed border-slate-200 -translate-y-1/2 z-0" />
+
+              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 relative z-10">
                 {[
-                  { step: "Apresentação", desc: "Um projeto é proposto por um parlamentar ou cidadão." },
-                  { step: "Comissões", desc: "Especialistas analisam se o projeto é constitucional." },
-                  { step: "Plenário", desc: "Votação formal para aprovação ou rejeição." },
-                  { step: "Sanção", desc: "O Presidente assina e o projeto vira lei oficial." }
+                  { 
+                    step: "1", 
+                    title: "Proposta", 
+                    desc: "Parlamentares, Governo ou cidadãos sugerem uma ideia.", 
+                    icon: <PenTool size={20} />, 
+                    color: "bg-blue-600" 
+                  },
+                  { 
+                    step: "2", 
+                    title: "Análise", 
+                    desc: "Comissões técnicas estudam e dão parecer sobre o projeto.", 
+                    icon: <Search size={20} />, 
+                    color: "bg-emerald-600" 
+                  },
+                  { 
+                    step: "3", 
+                    title: "Votação", 
+                    desc: "Os parlamentares votam a favor ou contra no plenário.", 
+                    icon: <Users size={20} />, 
+                    color: "bg-amber-500" 
+                  },
+                  { 
+                    step: "4", 
+                    title: "Revisão", 
+                    desc: "A outra casa (Câmara ou Senado) analisa e pode mudar tudo.", 
+                    icon: <RotateCcw size={20} />, 
+                    color: "bg-indigo-600" 
+                  },
+                  { 
+                    step: "5", 
+                    title: "Sanção", 
+                    desc: "O Presidente aprova (vira lei) ou veta (volta ao Congresso).", 
+                    icon: <CheckCircle2 size={20} />, 
+                    color: "bg-rose-600" 
+                  }
                 ].map((item, i) => (
-                  <div key={i} className="relative pl-10">
-                    <div className="absolute -left-[11px] top-1 w-5 h-5 rounded-full bg-blue-600 border-4 border-white shadow-sm" />
-                    <h4 className="font-bold text-lg text-slate-900">{item.step}</h4>
-                    <p className="text-sm text-slate-500 max-w-lg">{item.desc}</p>
+                  <div key={i} className="group relative">
+                    {/* Card */}
+                    <div className="bg-white p-6 rounded-[2rem] border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center h-full group-hover:-translate-y-2">
+                      
+                      {/* Círculo do Ícone */}
+                      <div className={`w-12 h-12 ${item.color} text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-${item.color.split('-')[1]}-200 group-hover:scale-110 transition-transform`}>
+                        {item.icon}
+                      </div>
+
+                      <span className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-2">
+                        Etapa {item.step}
+                      </span>
+                      <h4 className="text-lg font-bold text-slate-900 mb-3">{item.title}</h4>
+                      <p className="text-xs text-slate-500 leading-relaxed">
+                        {item.desc}
+                      </p>
+
+                      {/* Seta indicativa (Mobile/Tablet) */}
+                      {i < 4 && (
+                        <div className="lg:hidden mt-6 text-slate-300">
+                          <ChevronRight size={24} className="rotate-90 md:rotate-0" />
+                        </div>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
-            </section>
+            </div>
 
-            {/* SEÇÃO SISTEMA ELEITORAL */}
-            <section id="sistema" className="mb-24 scroll-mt-24">
-              <div className="flex flex-col items-center text-center mb-12">
-                {/* Ícone ou Badge Superior (Opcional) */}
-                <span className="bg-green-50 text-green-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
-                  Entenda as Urnas
-                </span>
-                
-                <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-6">
-                  Sistema Eleitoral Brasileiro
-                </h2>
-
-                {/* O SUBTÍTULO SOLICITADO */}
-                <div className="max-w-2xl mx-auto space-y-2">
-                  <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
-                    O sistema eleitoral define como os votos são transformados em representantes eleitos.
-                  </p>
-                  <p className="text-base text-slate-500 font-medium italic">
-                    No Brasil, existem dois modelos principais: <span className="text-blue-600">majoritário</span> e <span className="text-green-600">proporcional</span>.
-                  </p>
+            {/* Info de Rodapé (Sanção vs Veto) */}
+            <div className="mt-12 bg-slate-50 border border-slate-200 rounded-[2rem] p-8 max-w-4xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div className="flex gap-4">
+                  <div className="shrink-0 w-10 h-10 bg-green-100 text-green-600 rounded-full flex items-center justify-center">
+                    <CheckCircle2 size={20} />
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-slate-900 text-sm">Sancionar</h5>
+                    <p className="text-xs text-slate-500">O Presidente aprova o texto e a lei passa a valer oficialmente.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <div className="shrink-0 w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
+                    <AlertCircle size={20} />
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-slate-900 text-sm">Vetar</h5>
+                    <p className="text-xs text-slate-500">O Presidente rejeita partes ou o todo. O Congresso ainda pode derrubar este veto.</p>
+                  </div>
                 </div>
               </div>
+            </div>
+          </section>
 
-              {/* CARDS COMPARATIVOS (Majoritário vs Proporcional) */}
-              <div className="grid md:grid-cols-2 gap-8 mb-12">
-                {/* Majoritário */}
-                <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300">
-                  <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-50 text-blue-700 text-sm md:text-base font-bold mb-5">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                    </span>
-                    Voto Majoritário
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-950 mb-3">O Mais Votado Vence</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                    Sistema direto: quem recebe mais votos, ganha.
-                    Se ninguém atingir maioria absoluta (mais de 50%), ocorre segundo turno.
-                  </p>
+            {/* SEÇÃO: SISTEMA ELEITORAL */}
+          <section id="eleitoral" className="mb-24 scroll-mt-24">
+            <div className="flex flex-col items-center text-center mb-12">
+              <span className="bg-green-50 text-green-700 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-4">
+                Entenda as Urnas
+              </span>
+              
+              <h2 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tighter mb-6">
+                Sistema Eleitoral Brasileiro
+              </h2>
+
+              <div className="max-w-2xl mx-auto space-y-2">
+                <p className="text-lg md:text-xl text-slate-600 leading-relaxed">
+                  O sistema eleitoral define como os votos são transformados em representantes eleitos.
+                </p>
+                <p className="text-base text-slate-500 font-medium italic">
+                  No Brasil, existem dois modelos principais: <span className="text-blue-600">majoritário</span> e <span className="text-green-600">proporcional</span>.
+                </p>
+              </div>
+            </div>
+
+            {/* CARDS COMPARATIVOS (Majoritário vs Proporcional) */}
+            <div className="grid md:grid-cols-2 gap-8 mb-12 items-stretch">
+              
+              {/* Majoritário */}
+              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-blue-50 text-blue-700 text-sm md:text-base font-bold mb-5 w-fit">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                  </span>
+                  Voto Majoritário
+                </div>
+                <h3 className="text-2xl font-bold text-slate-950 mb-3">O Mais Votado Vence</h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  Sistema direto: quem recebe mais votos, ganha.
+                  Se ninguém atingir maioria absoluta (mais de 50%), ocorre segundo turno.
+                </p>
+                
+                <div className="space-y-6 mt-auto">
                   <div className="space-y-2.5 border-t border-slate-100 pt-5">
-                    <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">Aplica-se para:</p>
+                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-wider">Aplica-se para:</p>
                     <div className="flex flex-wrap gap-2">
                       {['Presidente', 'Governador', 'Prefeito', 'Senador'].map(cargo => (
                         <span key={cargo} className="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-full font-medium">
@@ -821,23 +913,36 @@ export default function EducativoPage() {
                       ))}
                     </div>
                   </div>
-                </div>
 
-                {/* Proporcional */}
-                <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300">
-                  <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-50 text-green-700 text-sm md:text-base font-bold mb-5">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    Voto Proporcional
+                  {/* IMAGEM MAJORITÁRIO */}
+                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-50 border border-slate-100">
+                    <Image 
+                      src="/imagens/icone-eleitoral-majoritatio.png" 
+                      alt="Infográfico Voto Majoritário" 
+                      fill 
+                      className="object-contain p-4"
+                    />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-950 mb-3">Vagas distribuídas por partido</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed mb-6">
-                    Não vence só o mais votado. Os votos vão para o partido ou federação. As vagas são distribuídas conforme o total de votos recebidos.
-                  </p>
+                </div>
+              </div>
+
+              {/* Proporcional */}
+              <div className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col">
+                <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-50 text-green-700 text-sm md:text-base font-bold mb-5 w-fit">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  </span>
+                  Voto Proporcional
+                </div>
+                <h3 className="text-2xl font-bold text-slate-950 mb-3">Vagas distribuídas por partido</h3>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  Não vence só o mais votado. Os votos vão para o partido ou federação. As vagas são distribuídas conforme o total de votos recebidos.
+                </p>
+                
+                <div className="space-y-6 mt-auto">
                   <div className="space-y-2.5 border-t border-slate-100 pt-5">
-                    <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">Aplica-se para:</p>
+                    <p className="text-[10px] text-slate-400 font-black uppercase tracking-wider">Aplica-se para:</p>
                     <div className="flex flex-wrap gap-2">
                       {['Deputado Federal', 'Deputado Estadual', 'Vereador'].map(cargo => (
                         <span key={cargo} className="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-full font-medium">
@@ -846,27 +951,20 @@ export default function EducativoPage() {
                       ))}
                     </div>
                   </div>
+
+                  {/* IMAGEM PROPORCIONAL */}
+                  <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden bg-slate-50 border border-slate-100">
+                    <Image 
+                      src="/imagens/icone-eleitoral-proporcional.png" 
+                      alt="Infográfico Voto Proporcional" 
+                      fill 
+                      className="object-contain p-4"
+                    />
+                  </div>
                 </div>
               </div>
-
-              {/* O INFOGRÁFICO PAISAGEM */}
-              <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[2rem] border border-slate-100 shadow-inner">
-                <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl shadow-slate-200/70 border-4 border-white">
-                  <Image
-                    src="/imagens/info-eleitoral-majoritatio-proporcional.png" 
-                    alt="Infográfico detalhado comparando o sistema eleitoral majoritário e proporcional no Brasil"
-                    fill 
-                    sizes="(max-w-7xl) 100vw, 1200px" 
-                    className="object-cover object-center" 
-                    priority 
-                  />
-                </div>
-                <p className="text-center text-xs text-slate-400 mt-5 italic">
-                  Fonte: .
-                </p>
-              </div>
-
-              {/* O INFOGRÁFICO PAISAGEM */}
+            </div>
+            {/* O INFOGRÁFICO PAISAGEM */}
               <div className="bg-slate-50 p-4 sm:p-6 md:p-8 rounded-[2rem] border border-slate-100 shadow-inner">
                 <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl shadow-slate-200/70 border-4 border-white">
                   <Image
@@ -882,26 +980,62 @@ export default function EducativoPage() {
                   Fonte: .
                 </p>
               </div>
-            </section>
+          </section>
 
-
-            {/* FAQ */}
-            <section id="faq" className="max-w-3xl mx-auto py-20 scroll-mt-24">
-               <h2 className="text-2xl font-bold mb-8 flex items-center gap-2">
-                 <HelpCircle className="text-blue-500" /> Perguntas Comuns
-               </h2>
-               <div className="space-y-4">
-                  <details className="group bg-white rounded-2xl border border-slate-200 overflow-hidden">
-                    <summary className="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-slate-700 hover:text-blue-600">
-                      Quem decide o preço da passagem de ônibus?
-                      <ChevronRight size={18} className="group-open:rotate-90 transition-transform" />
-                    </summary>
-                    <div className="px-6 pb-6 text-slate-500 text-sm">
-                      A responsabilidade principal é da Prefeitura (Executivo Municipal).
-                    </div>
-                  </details>
-               </div>
-            </section>
+          {/* SEÇÃO: FAQ */}
+          <section id="faq" className="max-w-3xl mx-auto py-20 scroll-mt-24 px-4">
+            <h2 className="text-2xl font-bold mb-8 flex items-center gap-2 text-slate-800">
+              <HelpCircle className="text-blue-500" /> Perguntas Comuns
+            </h2>
+            
+            <div className="space-y-4">
+              {[
+                {
+                  q: "Qual a diferença entre voto majoritário e proporcional?",
+                  a: "No sistema majoritário, vence quem tem mais votos (como Presidente e Senadores). No proporcional, as vagas são distribuídas entre os partidos conforme o total de votos recebidos pelo grupo político."
+                },
+                {
+                  q: "Por que nem sempre o mais votado é eleito?",
+                  a: "Isso ocorre no sistema proporcional (Deputados e Vereadores). Como os votos contam primeiro para o partido, um candidato muito votado pode 'puxar' outros do mesmo partido, enquanto alguém com boa votação individual pode ficar de fora se seu partido não atingir o quociente eleitoral."
+                },
+                {
+                  q: "Quanto custa um parlamentar por mês?",
+                  a: "O custo total, incluindo salário (R$ 46 mil), equipe de assessores e cota para despesas, pode ultrapassar R$ 200 mil para deputados e chegar a mais de R$ 500 mil para senadores."
+                },
+                {
+                  q: "O que são emendas parlamentares?",
+                  a: "São recursos do orçamento público que os deputados e senadores podem direcionar para obras, hospitais ou projetos específicos em suas regiões ou estados de origem."
+                },
+                {
+                  q: "O que são as “emendas PIX”?",
+                  a: "É uma modalidade de transferência especial onde o recurso cai direto na conta da prefeitura ou estado sem um projeto detalhado previamente, o que gera debates sobre a dificuldade de fiscalizar como esse dinheiro é gasto."
+                },
+                {
+                  q: "Quem cria as leis no Brasil?",
+                  a: "Principalmente o Poder Legislativo (Congresso Nacional, Assembleias e Câmaras). No entanto, o Presidente e até cidadãos (via projetos de iniciativa popular) também podem propor novas leis."
+                },
+                {
+                  q: "Qual a diferença entre deputado e senador?",
+                  a: "O deputado representa o povo e foca em questões sociais e fiscalização. O senador representa o Estado (ou DF) e tem funções como aprovar autoridades e julgar crimes de responsabilidade."
+                },
+                {
+                  q: "O que deve fazer um parlamentar na prática?",
+                  a: "Além de votar leis no plenário, eles devem trabalhar em comissões técnicas, fiscalizar como o governo gasta o dinheiro público e atender demandas de suas bases eleitorais para levar investimentos às cidades."
+                },
+                
+              ].map((faq, index) => (
+                <details key={index} className="group bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm hover:border-blue-100 transition-colors">
+                  <summary className="flex items-center justify-between p-6 cursor-pointer list-none font-bold text-slate-700 hover:text-blue-600">
+                    <span className="pr-4">{faq.q}</span>
+                    <ChevronRight size={18} className="group-open:rotate-90 transition-transform shrink-0 text-slate-400" />
+                  </summary>
+                  <div className="px-6 pb-6 text-slate-500 text-sm leading-relaxed border-t border-slate-50 pt-4">
+                    {faq.a}
+                  </div>
+                </details>
+              ))}
+            </div>
+          </section>
 
           </div>
         </div>
